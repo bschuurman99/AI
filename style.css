@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700,900,100,400italic|Roboto+Mono:400,500);
 
+body {
+	background-color: gray;
+}
+
 
 
 * {
@@ -53,6 +57,20 @@ a:hover{color: #000}
 	margin-top: 16px;
 	font-size: 12px;
 	letter-spacing: .1em;
+}
+
+
+[part1] {
+	background-color: #FFF;
+	color: #3F51B5;
+	text-align: justify;
+	padding: 50px 10vw;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 10vw;
+}
+
+[part2] {
+	/*hier komt flex shit*/
 }
 
 nav {
