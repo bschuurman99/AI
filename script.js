@@ -3,15 +3,19 @@
 //   $("nav ul").css("column-count",Math.round(numitems/2));
 // });
 
+var n = false;
+
 $('[hamburger]').click(function() {
-	$(this).parent().toggleClass('extended');
+	$('nav, [icon]').toggleClass('extended');
+ 	n = true;
 });
 
-$('html').click(function() {
-	$('nav').removeClass('extended');
+$('nav').click(function() {
+	if (!n) {	$('nav').removeClass('extended');};
+	n = false;
 });
 
-$('nav').click(function(event){
+$('nav ul').click(function(event){
     event.stopPropagation();
 });
 
@@ -19,19 +23,18 @@ $('nav a').click(function(event){
 	$('nav').removeClass('extended');
 });
 
-$('a').click(function() {
-	console.log($(this).attr('href'));
+$('nav a').click(function() {
+  $('html, body').animate({scrollTop: Math.round($($(this).attr('href')).offset().top)}, 750);
 });
 
+$('[totop]').click(function(){
+	$('html, body').animate({scrollTop:0},750);
+});
 
-// van http://jsfiddle.net/49u2q/6/
-$.fn.toggleAttr = function(attr, val) {
-	return this.each(function() {
-		var $this = $(this);
-		if ($this.is("[" + attr + "]")) {
-			$this.removeAttr(attr);
+$(window).scroll(function() {
+		if($(window).scrollTop() > 0) {
+				$('[totop]').removeClass('ontop');
 		} else {
-			$this.attr(attr, val);
+				$('[totop]').addClass('ontop');
 		}
-	});
-}
+});
