@@ -28,16 +28,17 @@
 	});
 
 	var $totop = $('[totop]');
-	var $nav = $('nav');
 
 	$(window).scroll(function() {
 		var pxFromTop = $(window).scrollTop();
-		var opacity = Math.min(pxFromTop/200, 1);
+		var scroll = Math.min(pxFromTop/300, 1);
 
 		if (pxFromTop > 0 && $totop.hasClass('ontop')) $totop.removeClass('ontop');
 			else if (pxFromTop <= 0 && !$totop.hasClass('ontop')) $totop.addClass('ontop');
 
-		$nav.css({'background-color':'rgba(255, 255, 255, '+ opacity +')','box-shadow':'0px 0px 6px rgba(0, 0, 0, ' + opacity * 0.6 + ')'});
+		$('nav').css({'background-color':'rgba(255, 255, 255, '+ scroll +')','box-shadow':'0px 0px 6px rgba(0, 0, 0, ' + scroll * 0.6 + ')'});
+		$('nav a').css('color','hsla(180, 80%, ' + (100 - scroll * 100) + '%, ' + (1 - scroll * 0.13) + ')');
+
 	});
 
 	setTimeout(function(){ if (window.location.hash && $(window).innerWidth()>1263) $('html, body').stop().animate({scrollTop: Math.round($(window.location.hash).offset().top) - 67}, 100);},500);
